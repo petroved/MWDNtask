@@ -1,0 +1,48 @@
+.ed-carousel {
+  height: 300px;
+  .ed-slide-box {
+    background: $gray-lighter;
+    border: 3px solid $gray-lighter;
+    border-radius: 2px;
+    width: 200px;
+    height: 240px;
+  }
+
+  .carousel {
+    padding: 0 30px;
+
+    .slick-slide {
+      margin: 0 5px;
+    }
+
+    .slick-prev {
+      left: 0;
+      text-align: left;
+      &:before {
+        content: '\f0d9';
+      }
+    }
+
+    .slick-next{
+      right: 0;
+      text-align: right;
+
+      &:before {
+        content:'\f0da';
+      }
+    }
+
+    .slick-prev,
+    .slick-next {
+      width: 30px;
+      height: 60px;
+      cursor: pointer;
+
+      &:before {
+        font-family: 'FontAwesome';
+        color: $gray-light;
+        font-size: 40px;
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+.ed-footer {
+  line-height: $footer-height;
+
+  z-index: 0;
+
+  height: $footer-height;
+  margin-left: $sidebar-icon-width + (2 * $sidebar-element-padding-horizontal);
+
+  background: $footer-background-color;
+
+  @media (max-width: $screen-xs-max) {
+    height: auto;
+    margin-left: 0;
+  }
+
+  .ed-footer-left {
+    color: $footer-left-color;
+
+    @media (max-width: $screen-xs-max) {
+      float: none;
+
+      text-align: center;
+    }
+  }
+
+  .ed-footer-right {
+    float: right;
+
+    color: $footer-right-color;
+
+    @media (max-width: $screen-xs-max) {
+      float: none;
+
+      text-align: center;
+    }
+  }
+}

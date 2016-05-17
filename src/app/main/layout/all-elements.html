@@ -1,0 +1,168 @@
+<div class="container">
+  <div class="ed-main-content">
+    <h2>Subheader search and dropdown</h2>
+    <div class="ed-page-subheader">
+      <div class="row">
+        <div class="col-sm-6 col-lg-3">
+          <div class="input-group ed-search-input">
+            <input type="text" class="form-control ed-form-control" placeholder="Search">
+            <span class="input-group-btn">
+              <button class="btn btn-default ed-numeric-btn ed-button-normal" type="button">(1)</button>
+              <button class="btn btn-default ed-search-btn ed-button-normal" type="button">
+                <i class="fa fa-search"></i>
+              </button>
+            </span>
+          </div>
+        </div>
+        <div class="col-sm-6 col-lg-3">
+          <div class="btn-group ed-dropdown" uib-dropdown is-open="status1.isopen">
+            <button type="button" class="btn ed-dropdown-btn" uib-dropdown-toggle ng-disabled="disabled">
+              Button dropdown
+            </button>
+            <ul class="dropdown-menu ed-dropdown-menu" role="menu" aria-labelledby="single-button">
+              <li role="menuitem"><a href="#">Action</a></li>
+              <li role="menuitem"><a href="#">Another action</a></li>
+              <li role="menuitem"><a href="#">Something else here</a></li>
+              <li role="menuitem"><a href="#">Separated link</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Inner subheader + dropdown menu</h2>
+        <div class="ed-header-dropdown">
+          <div class="content">
+            <h4>Sam Adams - 13/03/2012</h4>
+            <h5>Enquiry ID: <strong>008</strong></h5>
+          </div>
+          <div class="dropdown-wrap">
+            <div uib-dropdown on-toggle="toggled(open)">
+              <a href class="top-selected" uib-dropdown-toggle>Enquiry</a>
+              <ul uib-dropdown-menu aria-labelledby="simple-dropdown">
+                <li>
+                  <a href class="active">Enquiry</a>
+                </li>
+                <li>
+                  <a href>Communication log</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 pull-left">
+        <h2>Sidenav</h2>
+        <side-nav></side-nav>
+      </div>
+      <div class="col-lg-7 pull-left">
+        <div class="form-horizontal">
+          <h2>Form elements</h2>
+          <div class="form-group ed-form-group">
+            <label for="" class="col-sm-3 col-xs-12 control-label ed-text-right-sm">Inline input</label>
+            <div class="col-sm-9 col-xs-12 pull-right">
+              <input type="email" class="form-control ed-form-control" id="" placeholder="">
+            </div>
+          </div>
+          <div class="form-group ed-form-group">
+            <label for="" class="col-sm-3 col-xs-12 control-label ed-text-right-sm">Inline select</label>
+            <div class="col-sm-9 col-xs-12 pull-right">
+              <select class="form-control ed-form-control" name="" id="">
+                <option value="">Please select</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group ed-form-group">
+            <label for="" class="col-sm-3 col-xs-12 control-label ed-text-right-sm">Inline textarea</label>
+            <div class="col-sm-9 col-xs-12 pull-right">
+              <textarea name="" class="form-control ed-form-control" id="" rows="3"></textarea>
+            </div>
+          </div>
+          <div class="form-group ed-form-group">
+            <label for="" class="col-sm-3 col-xs-12 control-label ed-text-right-sm">inline input with button</label>
+            <div class="col-sm-9 col-xs-12 pull-right">
+              <div class="input-group">
+                <input type="text" class="form-control ed-form-control" />
+                <a href="" class="input-group-addon btn-default">
+                  <i class="fa fa-envelope"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="form-group ed-form-group">
+            <label for="" class="col-sm-3 col-xs-12 control-label ed-text-right-sm">Inline input with icon</label>
+            <div class="col-sm-9 col-xs-12 pull-right">
+              <div class="row">
+                <div class="col-sm-12 col-lg-12">
+                  <div class="ed-picker-input">
+                    <i class="fa fa-calendar"></i>
+                    <input type="text" class="form-control ed-form-control">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <h2>Simple table</h2>
+          <table class="table ed-simple-table">
+            <thead>
+              <tr>
+                <th>Grade</th>
+                <th>Note</th>
+                <th class="text-center">
+                  <button class="btn btn-success">+ Note</button>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>GRRR</td>
+                <td>Entered notes will be shown here...</td>
+                <td class="text-center"><i class="fa fa-trash"></i></td>
+              </tr>
+              <tr>
+                <td>GRRR</td>
+                <td>Entered notes will be shown here...</td>
+                <td class="text-center"><i class="fa fa-trash"></i></td>
+              </tr>
+              <tr>
+                <td>GRRR</td>
+                <td>Entered notes will be shown here...</td>
+                <td class="text-center"><i class="fa fa-trash"></i></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Alerts</h2>
+        <uib-alert type="success" close="close()"><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipisicing elit. Laudantium, sed!</uib-alert>
+        <uib-alert type="info" close="close()"><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipisicing elit. Sunt, pariatur.</uib-alert>
+        <uib-alert type="warning" close="close()"><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipisicing elit. Sapiente, totam.</uib-alert>
+        <uib-alert type="danger" close="close()"><strong>Lorem</strong> ipsum dolor sit amet, consectetur adipisicing elit. Doloremque, vero.</uib-alert>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-12">
+        <h2>Buttons</h2>
+        <button type="button" class="btn btn-default">Default</button>
+        <button type="button" class="btn btn-primary">Primary</button>
+        <button type="button" class="btn btn-success">Success</button>
+        <button type="button" class="btn btn-info">Info</button>
+        <button type="button" class="btn btn-warning">Warning</button>
+        <button type="button" class="btn btn-danger">Danger</button>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+</div>

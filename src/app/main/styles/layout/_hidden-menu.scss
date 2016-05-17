@@ -1,0 +1,138 @@
+.ed-hidden-menu {
+  position: fixed;
+  z-index: $zindex-popover;
+  top: $navbar-height;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: none;
+  overflow-y: auto;
+
+  width: 100%;
+  margin: 0;
+
+  list-style: outside none none;
+
+  opacity: .9;
+  background: $sidebar-background-color;
+
+  ng-md-icon {
+    width: 100%;
+    height: 100%;
+    svg {
+      display: initial;
+    }
+  }
+
+  &.ed-open-hidden-menu {
+    display: block;
+  }
+
+  .ed-hidden-menu-inner-wrapper {
+    @include clearfix;
+
+    padding: 20px 30px 60px;
+  }
+
+  .ed-hidden-menu-element {
+    display: block;
+    float: left;
+
+    width: 10%;
+    height: 130px;
+    margin: 2% 5%;
+
+    &.active,
+    &.active:hover {
+      svg {
+        path,
+        circle,
+        polygon,
+        polyline,
+        line,
+        rect,
+        ellipse {
+          fill: transparent;
+          stroke: $light-text-color;
+          stroke-width: 1.2;
+        }
+      }
+
+      span {
+        font-size: $font-size-larger;
+        font-weight: 700;
+
+        color: $light-text-color;
+      }
+    }
+
+    @media (min-width: $screen-md-min) {
+      width: 10%;
+      margin: 2% 0 3% 4%;
+    }
+
+    @media (min-width: $screen-sm-min) and (max-width: $screen-md-max) {
+      width: 15%;
+      margin: 2% 5%;
+    }
+
+    @media (min-width: $screen-xs-min) and (max-width: $screen-sm-max) {
+      width: 23%;
+      margin: 3% 5%;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      width: 36%;
+      margin: 5% 7%;
+    }
+
+    &:hover {
+      @include svg-color($sidebar-text-hover-color);
+
+      span {
+        color: $sidebar-text-hover-color;
+      }
+    }
+
+    span {
+      display: inline-block;
+
+      width: 100%;
+      margin-top: 4px;
+
+      text-align: center;
+
+      color: $light-text-color;
+    }
+
+    img,
+    svg,
+    .ed-svg {
+      width: 57%;
+      height: 73px;
+      margin-top: 15px;
+    }
+
+    a {
+      display: block;
+
+      text-align: center;
+      text-decoration: none;
+    }
+  }
+
+  svg {
+    path,
+    circle,
+    polygon,
+    polyline,
+    line,
+    rect,
+    ellipse {
+      fill: transparent;
+      stroke: $light-text-color;
+      stroke-width: .7;
+    }
+  }
+}

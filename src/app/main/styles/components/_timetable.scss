@@ -1,0 +1,34 @@
+$even-tr-bg: #f2f2f2;
+
+.ed-timetable {
+  width: 100%;
+  min-width: $screen-sm-min;
+  height: 100%;
+  table-layout: fixed;
+
+  font-size: $font-size-base-secondary;
+
+  border-top: 1px solid $ed-main-border-color;
+  border-bottom: 1px solid $ed-main-border-color;
+  background: $ed-simple-white;
+
+  > thead,
+  > tbody {
+    border: 0;
+
+    > tr {
+      > th,
+      > td {
+        border: 1px solid $ed-main-border-color;
+        vertical-align: middle;
+      }
+    }
+  }
+  th {
+    padding: 4px;
+  }
+  td {
+    height: 100px;
+    padding: 5px 10px;
+  }
+}

@@ -1,0 +1,40 @@
+.ed-files-block {
+
+  .ed-file-block {
+    width: 144px;
+    height: 220px;
+    line-height: 252px;
+    display: inline-block;
+    border: 1px solid $gray-middle-light;
+    margin-bottom: 10px;
+    color: $gray-light;
+    cursor: pointer;
+    text-align: center;
+  }
+
+  .ed-file-block-title {
+    width: 160px;
+    text-align: center;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    text-align: center;
+
+    .ed-file-block {
+      width: 200px;
+    }
+
+    .ed-file-block-title {
+      width: 100%;
+      margin-bottom: 40px;
+    }
+  }
+
+  @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+    .ed-file-block-title,
+    .ed-file-block {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}

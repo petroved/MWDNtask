@@ -1,0 +1,75 @@
+.ed-calendar {
+
+  h2 {
+    font-size: $font-size-h3;
+  }
+
+  .fc-view-container {
+    overflow-x: auto;
+
+    .fc-view:not(.fc-basicDay-view) {
+      > table {
+        min-width: $screen-sm-min;
+      }
+    }
+
+    .fc-scroller {
+      height: auto !important; //directive fix
+      overflow-y: initial;
+    }
+  }
+
+  .fc-button {
+    border: 0;
+    border-radius: 2px;
+    background: $gray-lighter;
+    padding: 8px 12px;
+    outline: none;
+    box-shadow: none;
+    height: auto;
+    text-transform: capitalize;
+    color: $gray-dark;
+
+    &:hover,
+    &.fc-state-active {
+      background: $gray-middle-light;
+    }
+
+    &.fc-prev-button {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    &.fc-next-button {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+  @media (max-width: $screen-xs-max) {
+    .fc-button {
+      padding: 8px 4px;
+    }
+
+    .fc-center {
+      width: 100%;
+      margin-top: 16px;
+      text-align: center;
+    }
+
+    .fc-day-grid-container {
+      height: auto!important;
+      overflow: auto;
+    }
+  }
+
+  .fc-event {
+    padding: 10px 4px;
+    margin: 0;
+    border-radius: 0;
+    margin-bottom: 1px;
+
+    .fc-content {
+      white-space: normal;
+    }
+  }
+}

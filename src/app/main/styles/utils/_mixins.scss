@@ -1,0 +1,13 @@
+@mixin svg-color($color) {
+  svg {
+    path,
+    circle,
+    polygon,
+    polyline,
+    line,
+    rect,
+    ellipse {
+      stroke: $color;
+    }
+  }
+}

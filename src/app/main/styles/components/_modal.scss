@@ -1,0 +1,100 @@
+.modal-content {
+
+  .modal-body {
+    p,
+    span {
+      font-size: $font-size-base-secondary;
+    }
+  }
+
+  .modal-header {
+    position: relative;
+
+    padding-right: 40px;
+    min-height: 48px;
+
+    .close {
+      position: absolute;
+      top: 14px;
+      right: 0;
+
+      padding: 2px 14px;
+
+      cursor: pointer;
+    }
+  }
+}
+
+.ed-tab-modal {
+
+  .modal-header {
+    display: flex;
+
+    padding-top: 0;
+    padding-bottom: 0;
+
+    border: 0;
+
+    align-items: flex-end;
+
+    @media (max-width: $screen-xs-max) {
+      display: block;
+    }
+
+    .title-content {
+      font-size: $font-size-base-secondary;
+
+      padding: 15px 15px 15px 0;
+    }
+
+    ul {
+      margin-left: auto;
+
+      text-align: center;
+
+      li {
+        font-size: $font-size-larger;
+        line-height: 68px;
+
+        display: inline-block;
+        float: left;
+
+        height: 68px;
+        padding: 0 13px;
+
+        cursor: pointer;
+        transition: background ease .2s;
+
+        ng-md-icon,
+        svg {
+          width: auto;
+          height: auto;
+        }
+
+        &.active {
+          background: #f2f2f2;
+
+          &:hover {
+            background: #f2f2f2;
+          }
+        }
+
+        &:hover {
+          background: tint($gray-lighter, 40%);
+        }
+      }
+    }
+  }
+
+  .modal-footer,
+  .modal-body {
+    border: 0;
+    background: #f2f2f2;
+
+    .tab-inner-head {
+      padding: 0 0 20px 0;
+
+      border-bottom: 1px solid #ddd;
+    }
+  }
+}

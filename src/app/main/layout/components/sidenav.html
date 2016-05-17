@@ -1,0 +1,28 @@
+<div class="ed-sidanav hidden-print">
+  <ul class="list-unstyled animated" ng-repeat="nav in navHistory" ng-class="{'slideInRight': nav.next, 'slideOutLeft': nav.back}" ng-style="{zIndex: $index + 5}">
+    <div class="back-style" ng-if="$index > 0">
+      <span class="prev-title">{{navHistory[$index].title}}</span>
+      <span class="back-button" ng-click="changeLevel('back')">Back</span>
+    </div>
+    <li ng-repeat="item in nav.data track by $index">
+      <a ng-if="!item.state" ng-class="{'has-content': item.items.length}" ng-click="changeLevel('next', item, item.title)">
+        {{item.title}}
+      </a>
+      <a ng-if="item.state" ng-click="closeOnClick()" ng-class="{'active': isState(item.state, item.stateParams)}" ui-state="item.state" ui-state-params="item.stateParams">
+        <div class="row" ng-if="!item.titleSecondary">
+          <div class="col-xs-12">
+            <span>{{item.title}}</span>
+          </div>
+        </div>
+        <div class="row" ng-if="item.titleSecondary">
+          <div class="col-xs-6 text-left">
+            <span>{{item.title}}</span>
+          </div>
+          <div class="col-xs-6 text-right">
+            <span>{{item.titleSecondary}}</span>
+          </div>
+        </div>
+      </a>
+    </li>
+  </ul>
+</div>

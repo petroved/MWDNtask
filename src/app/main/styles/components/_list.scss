@@ -1,0 +1,12 @@
+.ed-dl-horizontal {
+  &.dl-horizontal {
+    @media (min-width: $screen-sm-min) {
+      dt {
+        width: 220px;
+      }
+      dd {
+        margin-left: 240px;
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+$login-input-border-color: rgba(0, 0, 0, .46);
+$facebook-color: #3a5ba2;
+$twitter-color: #00abf1;
+$linkedin-color: #0083be;
+
+.ed-login-wrapper {
+  overflow-x: hidden;
+
+  width: 100%;
+  min-height: 100vh;
+
+  background: url($login-background-image) no-repeat top center fixed;
+  background-size: cover;
+
+  @media (max-width: $screen-xs-max) {
+    background-position: left top;
+    background-size: auto;
+  }
+
+  input {
+    border-radius: 0;
+
+    &:focus {
+      transition: color ease .3s, border ease .3s, box-shadow ease .3s;
+
+      color: $gray-darker;
+      border: 1px solid $login-input-border-color;
+      outline: none;
+      box-shadow: 0 0 10px $login-input-border-color;
+    }
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  .ed-login-container {
+    width: $login-container-width;
+    margin: 0 auto;
+    padding: 0 1.1rem;
+    padding-top: 150px;
+
+    @media (max-width: $screen-md-max) {
+      padding-top: 80px;
+    }
+
+    @media (max-width: $screen-sm-max) {
+      padding-top: 50px;
+    }
+
+    @media (max-width: $screen-xs-max) {
+      width: 100%;
+      padding-top: 30px;
+    }
+  }
+
+  .form-control {
+    &.ed-login {
+      height: 37px;
+      padding: 6px;
+    }
+  }
+
+  .ed-login-btn {
+    padding: 8px;
+
+    transition: background ease .3s;
+
+    color: $light-text-color;
+    border-radius: 0;
+    outline: none;
+    background: $brand-secondary;
+
+    &:hover {
+      color: $light-text-color;
+      background: $login-btn-bg-hover;
+    }
+  }
+
+  .ed-login-forgotpass {
+    font-size: 13px;
+
+    display: inline-block;
+
+    padding-top: 34px;
+
+    color: $light-text-color;
+
+    @media (max-width: $screen-xs-max) {
+      padding-top: 12px;
+    }
+  }
+
+  .ed-login-social {
+    padding-top: 50px;
+
+    @media (max-width: $screen-xs-max) {
+      padding-top: 20px;
+    }
+
+    i,
+    p {
+      color: $light-text-color;
+    }
+
+    i {
+      font-size: 21px;
+
+      width: 40px;
+
+      &.fa-facebook:hover {
+        color: $facebook-color;
+      }
+
+      &.fa-twitter:hover {
+        color: $twitter-color;
+      }
+
+      &.fa-linkedin:hover {
+        color: $linkedin-color;
+      }
+    }
+  }
+
+  .ed-login-school {
+    margin-bottom: 20px;
+
+    @media (max-width: $screen-xs-max) {
+      margin-bottom: 10px;
+    }
+  }
+
+  .ed-login-message {
+    margin-bottom: 10px;
+
+    color: $light-text-color;
+  }
+
+  .error-container {
+    .error {
+      color: $light-text-color;
+    }
+  }
+}

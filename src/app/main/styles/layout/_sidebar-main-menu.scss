@@ -1,0 +1,108 @@
+.ed-sidebar-main-menu {
+  position: relative;
+  z-index: $zindex-modal-background;
+
+  overflow: hidden;
+
+  margin: 0;
+  padding: 6px 0;
+
+  list-style: outside none none;
+
+  background: none repeat scroll 0 0 $sidebar-background-color;
+
+  a {
+    display: table;
+
+    padding: 0;
+
+    text-decoration: none;
+
+    .ed-sidebar-menu-element {
+      // Don't remove font-size: 0 here this is trick for remove spaces betwen inline-block elements, look https://css-tricks.com/fighting-the-space-between-inline-block-elements/
+      font-size: 0;
+
+      display: table-cell;
+
+      padding: $sidebar-element-padding-vertical $sidebar-element-padding-horizontal;
+
+      vertical-align: middle;
+
+      span {
+        color: $light-text-color;
+      }
+    }
+
+    span {
+      font-size: $font-size-smaller;
+      line-height: $sidebar-line-height;
+
+      display: inline-block;
+
+      width: $sidebar-element-text-width;
+      margin-right: $sidebar-element-text-margin-right;
+
+      vertical-align: middle;
+
+      color: $light-text-color;
+    }
+
+    &:hover {
+      span {
+        color: $sidebar-text-hover-color;
+      }
+    }
+  }
+
+  svg {
+    display: inline-block;
+
+    width: $sidebar-icon-width;
+    height: $sidebar-icon-width;
+
+    vertical-align: middle;
+
+    path,
+    circle,
+    polygon,
+    polyline,
+    line,
+    rect,
+    ellipse {
+      stroke: $sidebar-icon-color;
+      stroke-width: 1.5;
+    }
+  }
+
+  li {
+    a {
+      &:hover {
+        @include svg-color($sidebar-text-hover-color);
+      }
+    }
+
+    &.active {
+      @include svg-color($light-text-color);
+
+      a {
+        text-decoration: none;
+
+        outline: none;
+      }
+
+      a:hover {
+        @include svg-color($light-text-color);
+
+        span {
+          color: $light-text-color;
+        }
+      }
+    }
+  }
+
+  .ed-sidebar-menu-more {
+    position: fixed;
+    z-index: $zindex-popover;
+    bottom: 0;
+  }
+}
