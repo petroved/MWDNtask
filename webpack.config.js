@@ -19,6 +19,7 @@ const paths = {
 
 module.exports = {
   // entry points
+  watch: true,
   entry: {
     vendor: path.resolve(path.join(paths.src, '/app/index.vendor.js')),
     app: path.resolve(path.join(paths.src, '/app/index.bootstrap.js')),
@@ -85,10 +86,13 @@ module.exports = {
         'postcss-loader'
       ]
     },
-    // {
-    //   test: /\.(scss|sass)$/,
-    //   loader: ('style-loader!' + stylesLoader)
-    // },
+    {
+      test: /\.(scss|sass)$/,
+      include: [
+        path.resolve(path.join(paths.src, "app")),
+      ],
+      loader: ExtractTextPlugin.extract('style-loader', stylesLoader)
+    },
     {
       test: /\.(woff2|woff|ttf|eot|svg)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loaders: [
@@ -136,7 +140,7 @@ module.exports = {
       children: true,
       minChunks: Infinity
     }),
-    // new ExtractTextPlugin('assets/styles/css/[name]' + '.[chunkhash].css', { allChunks: true }),
+    new ExtractTextPlugin('assets/styles/[name]' + '.[chunkhash].css', { allChunks: true }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: path.join(paths.src, 'index.html')

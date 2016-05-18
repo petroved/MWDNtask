@@ -1,4 +1,4 @@
 import { LoginController } from './login.controller';
 
-export default angular.module('edAdmin.login', [])
+export default angular.module('login', [])
   .controller('LoginController', LoginController);

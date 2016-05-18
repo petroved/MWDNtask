@@ -2,24 +2,24 @@ import { routerConfig } from './index.routes';
 import { config } from './index.config';
 import { runBlock } from './index.run';
 
-import { authInterceptor } from './main/services/auth.interceptor';
 import { authService } from './main/services/auth.service';
+import { entriesService } from './main/services/entries.service';
+import { currentEntryService } from './main/services/currentEntry.service';
 
 import { MainController } from './main/layout/main.controller.js';
 
+import './index.scss';
+
 /* eslint-disable no-unused-vars */
 // import { register } from 'main/qa-login/qaLogin.module';
-import { login } from './main/login/login.module';
 /* eslint-enable no-unused-vars */
 
 const app = angular.module(
   'test', [
     'ui.router',
-    // 'ui.bootstrap',
+    'ui.bootstrap',
     'oc.lazyLoad',
-
-    // features
-    'edAdmin.login',
+    'angularUtils.directives.dirPagination',
   ]);
 
 app
@@ -30,8 +30,9 @@ app
   .config(config)
   .config(routerConfig)
   .run(runBlock)
-  .factory('authService', authService)
-  .factory('authInterceptor', authInterceptor)
+  .service('authService', authService)
+  .service('entriesService', entriesService)
+  .service('currentEntryService', currentEntryService)
   .controller('MainController', MainController);
 
 export default app;

@@ -1,10 +1,14 @@
 'use strict';
 
 // node_modules
-import "angular";
-import "angular-ui-router";
+import 'angular';
+import 'angular-animate';
+import 'angular-ui-router';
 
-// import 'moment';
-import "oclazyload";
+import 'lodash';
+import 'moment';
+import 'oclazyload';
 import 'jquery';
-import 'bootstrap';
+import 'bootstrap-sass';
+import 'angular-ui-bootstrap';
+import 'angular-utils-pagination';

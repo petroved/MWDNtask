@@ -5,7 +5,7 @@ export class LoginController {
     this.LoginForm = {};
     this.message = false;
     this.userData = {
-      username: '',
+      email: '',
       password: '',
     };
     this.submitted = false;
@@ -29,10 +29,7 @@ export class LoginController {
 
     this.authService.login(this.userData)
       .then(() => {}, (response) => {
-        if (response.data.message) {
-        }
+        this.message = response.message;
       });
-
-    return false;
   }
 }

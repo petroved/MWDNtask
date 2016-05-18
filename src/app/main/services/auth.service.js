@@ -1,54 +1,48 @@
-export function authService($http, $location, $window, CONSTANTS) {
-  'ngInject';
+export class authService {
+  constructor($window, entriesService, currentEntryService) {
+    'ngInject';
 
-  let token = null;
+    this.authentication = angular.fromJson($window.localStorage.getItem('authentication')) || false;
 
-  const Auth = {
-    getToken,
-    setToken,
-    deleteToken,
-    login,
-    logout,
-  };
+    this.entriesService = entriesService;
+    this.currentEntryService = currentEntryService;
+    this.$window = $window;
+  }
 
-  return Auth;
+  isAuthenticate() {
+    return this.authentication;
+  }
 
-  function getToken() {
-    if (!token) {
-      token = $window.localStorage.getItem('token');
+  login(userData) {
+    const currentUser = _.find(this.entriesService.get(), {email: userData.email, password: userData.password})
+    if (!currentUser) {
+      return Promise.reject({message: 'Wrong email or password'});
     }
 
-    return token;
+    this.authentication = true;
+    this.$window.localStorage.setItem('authentication', 'true');
+    this.currentEntryService.set(currentUser);
+
+    // redirect to same /login page and actual redirection would be in .run function
+    this.$window.location = '/';
+
+    return Promise.resolve();
   }
 
-  function setToken(settedToken) {
-    token = settedToken;
-    $window.localStorage.setItem('token', settedToken);
+  logout() {
+    this.authentication = false;
+    this.$window.localStorage.setItem('authentication', 'false');
+    this.currentEntryService.delete();
+    this.$window.location = '/';
   }
 
-  function deleteToken() {
-    token = null;
-    $window.localStorage.removeItem('token');
-  }
+  register(userData) {
+    if (_.find(this.entriesService.get(), {email: userData.email})) {
+      return Promise.reject({message: 'User with this email already exist'});
+    }
 
-  function login(userData) {
-    return $http.post(`${CONSTANTS.API_PATH}/login`, {
-      username: userData.username,
-      password: userData.password,
-    }).then((response) => {
-      if (response.data.token) {
-        Auth.setToken(response.data.token);
+    this.entriesService.addEntry(userData);
 
-        // redirect to same /login page and actual redirection would be in .run function
-        $window.location = `${CONSTANTS.BASE_PATH}/`;
-      }
-
-      return response;
-    });
-  }
-
-  function logout() {
-    Auth.deleteToken();
-    $window.location = `${CONSTANTS.BASE_PATH}/`;
+    return Promise.resolve({message: 'User created succesfully'});
   }
 }
