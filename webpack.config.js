@@ -12,7 +12,6 @@ var stylesLoader = 'css-loader?sourceMap!postcss-loader!sass-loader?outputStyle=
 const paths = {
   src: 'src',
   dist: 'dist',
-  tmp: '.tmp',
 };
 
 module.exports = {
@@ -21,7 +20,6 @@ module.exports = {
   entry: {
     vendor: path.resolve(path.join(paths.src, '/app/index.vendor.js')),
     app: path.resolve(path.join(paths.src, '/app/index.bootstrap.js')),
-    // polyfill: 'babel-polyfill'
   },
 
   // output system
@@ -38,7 +36,6 @@ module.exports = {
   },
 
   module: {
-    noParse: [],
     preLoaders: [{
       test: /\.js$/,
       include: [
@@ -46,70 +43,68 @@ module.exports = {
       ],
       loader: 'eslint-loader',
     }],
-    loaders: [{
-      test: /\.html$/,
-      loaders: [
-        'ngtemplate-loader?relativeTo='+ paths.src,
-        'html-loader?attrs[]=img:src&attrs[]=img:data-src'
-      ]
-    }, {
-      test: /\.js$/,
-      loaders: [
-        'baggage-loader?[file].html&[file].css'
-      ]
-    }, {
-      test: /\.js$/,
-      include: [
-        path.resolve(path.join(paths.src, 'app')),
-      ],
-      loaders: [
-        'ng-annotate-loader'
-      ]
-    }, {
-      test: /\.js$/,
-      include: [
-        path.resolve(path.join(paths.src, 'app')),
-      ],
-      loader: 'babel-loader',
-      query: {
-        cacheDirectory: true,
-        plugins: ['transform-runtime', 'add-module-exports'],
-        presets: ['angular', 'es2017']
-      }
-    }, {
-      test: /\.css$/,
-      loaders: [
-        'style-loader',
-        'css-loader?sourceMap',
-        'postcss-loader'
-      ]
-    },
-    {
-      test: /\.(scss|sass)$/,
-      include: [
-        path.resolve(path.join(paths.src, 'app')),
-      ],
-      loader: ExtractTextPlugin.extract('style-loader', stylesLoader)
-    },
-    {
-      test: /\.(woff2|woff|ttf|eot|svg)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loaders: [
-        'url-loader?name=assets/fonts/[name]_[hash].[ext]'
-      ]
-    },
-    // {
-    //   test: /\.(jpe?g|png|gif)$/i,
-    //   loaders: [
-    //     'url-loader?name=assets/images/[name]_[hash].[ext]&limit=10000'
-    //   ]
-    // },
-    {
-      test: require.resolve('angular'),
-      loaders: [
-        'expose?angular'
-      ]
-    },
-
+    loaders: [
+      {
+        test: /\.html$/,
+        loaders: [
+          'ngtemplate-loader?relativeTo='+ paths.src,
+          'html-loader?attrs[]=img:src&attrs[]=img:data-src'
+        ]
+      },
+      {
+        test: /\.js$/,
+        loaders: [
+          'baggage-loader?[file].html&[file].css'
+        ]
+      },
+      {
+        test: /\.js$/,
+        include: [
+          path.resolve(path.join(paths.src, 'app')),
+        ],
+        loaders: [
+          'ng-annotate-loader'
+        ]
+      },
+      {
+        test: /\.js$/,
+        include: [
+          path.resolve(path.join(paths.src, 'app')),
+        ],
+        loader: 'babel-loader',
+        query: {
+          cacheDirectory: true,
+          plugins: ['transform-runtime', 'add-module-exports'],
+          presets: ['angular', 'es2017']
+        }
+      },
+      {
+        test: /\.css$/,
+        loaders: [
+          'style-loader',
+          'css-loader?sourceMap',
+          'postcss-loader'
+        ]
+      },
+      {
+        test: /\.(scss|sass)$/,
+        include: [
+          path.resolve(path.join(paths.src, 'app')),
+        ],
+        loader: ExtractTextPlugin.extract('style-loader', stylesLoader)
+      },
+      {
+        test: /\.(woff2|woff|ttf|eot|svg)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loaders: [
+          'url-loader?name=assets/fonts/[name]_[hash].[ext]'
+        ]
+      },
+      {
+        test: require.resolve('angular'),
+        loaders: [
+          'expose?angular'
+        ]
+      },
     ]
   },
 
@@ -145,5 +140,5 @@ module.exports = {
     // })
   ],
 
-  devtool: 'cheap-source-map'
+  devtool: 'cheap-source-map',
 };
