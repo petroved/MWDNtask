@@ -1,15 +1,12 @@
-'use strict';
-
 // index.html page to dist folder
+/* eslint-disable import/no-unresolved */
 import '!!file-loader?name=[name].[ext]!../favicon.ico';
+/* eslint-enable import/no-unresolved */
 
-// main App module
-import "./index.module";
+import './index.module';
 
-// import "../assets/styles/sass/index.scss";
-
-angular.element(document).ready(function () {
-  angular.bootstrap(document, ['test'], {
-    strictDi: true
+angular.element(document).ready(() => {
+  angular.bootstrap(document, ['MWDNtask'], {
+    strictDi: true,
   });
 });

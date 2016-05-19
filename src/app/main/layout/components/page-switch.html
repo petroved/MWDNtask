@@ -1,8 +1,0 @@
-<div uib-dropdown>
-  <a href="" class="top-selected" uib-dropdown-toggle>{{ (links | filter: {active: true})[0].title }}</a>
-  <ul uib-dropdown-menu aria-labelledby="simple-dropdown">
-    <li ng-repeat="link in links">
-      <a href="" ng-class="{'active': link.active}" ng-click="setActiveLink(link.value)">{{link.title}}</a>
-    </li>
-  </ul>
-</div>

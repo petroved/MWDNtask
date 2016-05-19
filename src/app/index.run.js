@@ -2,7 +2,7 @@ export function runBlock($rootScope, authService, $state) {
   'ngInject';
 
   $rootScope.$on('$stateChangeStart', (e, to, params) => {
-    if ( (!to.data || !to.data.noLogin) && !authService.isAuthenticate()) {
+    if ((!to.data || !to.data.noLogin) && !authService.isAuthenticate()) {
       e.preventDefault();
       $state.go('login');
     }
@@ -10,7 +10,7 @@ export function runBlock($rootScope, authService, $state) {
     // when we have already logged in but going on login page - redirect
     if ((to.name === 'login' || to.name === 'register') && authService.isAuthenticate()) {
       e.preventDefault();
-      $state.go('index.all', {page: 1});
+      $state.go('index.all', { page: 1 });
     }
 
     // Redirect when redirectTo

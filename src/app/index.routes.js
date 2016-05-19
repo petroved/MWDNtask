@@ -1,4 +1,4 @@
-export function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) {
+export function routerConfig($stateProvider, $urlRouterProvider) {
   'ngInject';
 
   $urlRouterProvider.otherwise('/login');
@@ -9,12 +9,6 @@ export function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) 
       data: {
         noLogin: true,
       },
-      // templateProvider: ($q) => {
-      //   return $q((resolve) => {
-      //     // lazy load the view
-      //     require.ensure([], () => resolve(require('./modules/login/login.html')), 'login');
-      //   });
-      // },
       templateUrl: 'src/app/modules/login/login.html',
       controller: 'LoginController as vm',
       resolve: {
@@ -26,7 +20,7 @@ export function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) 
               $ocLazyLoad.load({ name: module.name });
               resolve(module.controller);
             }, 'login');
-          })
+          }),
       },
     })
     .state('register', {
@@ -34,12 +28,6 @@ export function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) 
       data: {
         noLogin: true,
       },
-      // templateProvider: ($q) => {
-      //   return $q((resolve) => {
-      //     // lazy load the view
-      //     require.ensure([], () => resolve(require('./modules/register/register.html')), 'register');
-      //   });
-      // },
       templateUrl: 'src/app/modules/register/register.html',
       controller: 'RegisterController as vm',
       resolve: {
@@ -51,7 +39,7 @@ export function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) 
               $ocLazyLoad.load({ name: module.name });
               resolve(module.controller);
             }, 'register');
-          })
+          }),
       },
     })
     .state('index', {
@@ -67,7 +55,7 @@ export function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) 
       resolve: {
         page: ($stateParams) =>
           $stateParams.page,
-        loadEnquiryController: ($q, $ocLazyLoad) =>
+        loadEntriesController: ($q, $ocLazyLoad) =>
           $q((resolve) => {
             require.ensure([], () => {
               // load whole module
@@ -77,6 +65,44 @@ export function routerConfig($stateProvider, $urlRouterProvider, $httpProvider) 
               ]);
               resolve(module.controller);
             }, 'entries');
+          }),
+      },
+    })
+    .state('index.edit', {
+      url: '/{entryId:int}',
+      templateUrl: 'src/app/modules/editEntry/editEntry.html',
+      controller: 'EditEntryController as vm',
+      resolve: {
+        entryId: ($stateParams) =>
+          $stateParams.entryId,
+        loadEditEntryController: ($q, $ocLazyLoad) =>
+          $q((resolve) => {
+            require.ensure([], () => {
+              // load whole module
+              const module = require('./modules/editEntry/editEntry.module');
+              $ocLazyLoad.load([
+                { name: module.name },
+              ]);
+              resolve(module.controller);
+            }, 'editEntry');
+          }),
+      },
+    })
+    .state('index.create', {
+      url: '/create',
+      templateUrl: 'src/app/modules/createEntry/createEntry.html',
+      controller: 'CreateEntryController as vm',
+      resolve: {
+        loadCreateEntryController: ($q, $ocLazyLoad) =>
+          $q((resolve) => {
+            require.ensure([], () => {
+              // load whole module
+              const module = require('./modules/createEntry/createEntry.module');
+              $ocLazyLoad.load([
+                { name: module.name },
+              ]);
+              resolve(module.controller);
+            }, 'createEntry');
           }),
       },
     });

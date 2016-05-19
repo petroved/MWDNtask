@@ -7,8 +7,6 @@ var autoprefixer      = require('autoprefixer-core');
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var HtmlWebpackPlugin = require("html-webpack-plugin");
 
-// var NODE_ENV = process.env.NODE_ENV || "production";
-// var DEVELOPMENT  = NODE_ENV === "production" ? false : true;
 var stylesLoader = 'css-loader?sourceMap!postcss-loader!sass-loader?outputStyle=expanded&sourceMap=true&sourceMapContents=true';
 
 const paths = {
@@ -29,7 +27,7 @@ module.exports = {
   // output system
   output: {
     path: paths.dist,
-    filename: '[name].js',
+    filename: '[name].[hash].js',
     publicPath: '/'
   },
 
@@ -37,17 +35,17 @@ module.exports = {
   resolve: {
     extensions: ['', '.js'],
     modulesDirectories: ['node_modules'],
-    alias: {
-      _appRoot:     path.join(paths.src, 'app'),
-      _images:      path.join(paths.src, 'app', 'assets', 'images'),
-      _stylesheets: path.join(paths.src, 'app', 'assets', 'styles'),
-      _scripts:     path.join(paths.src, 'app', 'assets', 'js')
-    }
   },
 
-  // modules resolvers
   module: {
     noParse: [],
+    preLoaders: [{
+      test: /\.js$/,
+      include: [
+        path.resolve(path.join(paths.src, 'app')),
+      ],
+      loader: 'eslint-loader',
+    }],
     loaders: [{
       test: /\.html$/,
       loaders: [
@@ -62,7 +60,7 @@ module.exports = {
     }, {
       test: /\.js$/,
       include: [
-        path.resolve(path.join(paths.src, "app")),
+        path.resolve(path.join(paths.src, 'app')),
       ],
       loaders: [
         'ng-annotate-loader'
@@ -70,7 +68,7 @@ module.exports = {
     }, {
       test: /\.js$/,
       include: [
-        path.resolve(path.join(paths.src, "app")),
+        path.resolve(path.join(paths.src, 'app')),
       ],
       loader: 'babel-loader',
       query: {
@@ -89,26 +87,26 @@ module.exports = {
     {
       test: /\.(scss|sass)$/,
       include: [
-        path.resolve(path.join(paths.src, "app")),
+        path.resolve(path.join(paths.src, 'app')),
       ],
       loader: ExtractTextPlugin.extract('style-loader', stylesLoader)
     },
     {
       test: /\.(woff2|woff|ttf|eot|svg)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
       loaders: [
-        "url-loader?name=assets/fonts/[name]_[hash].[ext]"
+        'url-loader?name=assets/fonts/[name]_[hash].[ext]'
       ]
     },
+    // {
+    //   test: /\.(jpe?g|png|gif)$/i,
+    //   loaders: [
+    //     'url-loader?name=assets/images/[name]_[hash].[ext]&limit=10000'
+    //   ]
+    // },
     {
-      test: /\.(jpe?g|png|gif)$/i,
+      test: require.resolve('angular'),
       loaders: [
-        'url-loader?name=assets/images/[name]_[hash].[ext]&limit=10000'
-      ]
-    },
-    {
-      test: require.resolve("angular"),
-      loaders: [
-        "expose?angular"
+        'expose?angular'
       ]
     },
 
@@ -120,16 +118,11 @@ module.exports = {
 
   // load plugins
   plugins: [
-    //new webpack.ContextReplacementPlugin(/moment[\/\\]locale$/, /en|hu/),
-    // new webpack.DefinePlugin({
-    //   'NODE_ENV': JSON.stringify(NODE_ENV)
-    // }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery'
     }),
     new webpack.NoErrorsPlugin(),
-    // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.AggressiveMergingPlugin({
       moveToParents: true
@@ -152,5 +145,5 @@ module.exports = {
     // })
   ],
 
-  devtool: 'source-map'
+  devtool: 'cheap-source-map'
 };

@@ -7,36 +7,34 @@ export function passwordVerify() {
     scope: {
       passwordVerify: '=',
     },
-    link: linkFunc,
+    link: function linkFunc(scope, element, attrs, ctrl) {
+      scope.$watch(() => {
+        let combined;
+
+        if (scope.passwordVerify || ctrl.$viewValue) {
+          combined = `${scope.passwordVerify}_${ctrl.$viewValue}`;
+        }
+
+        return combined;
+      }, (value) => {
+        if (value) {
+          ctrl.$parsers.unshift((viewValue) => {
+            const origin = scope.passwordVerify;
+
+            if (origin !== viewValue) {
+              ctrl.$setValidity('passwordVerify', false);
+
+              return undefined;
+            }
+
+            ctrl.$setValidity('passwordVerify', true);
+
+            return viewValue;
+          });
+        }
+      });
+    },
   };
 
   return directive;
-
-  function linkFunc(scope, element, attrs, ctrl) {
-    scope.$watch(function() {
-      let combined;
-
-      if (scope.passwordVerify || ctrl.$viewValue) {
-         combined = scope.passwordVerify + '_' + ctrl.$viewValue;
-      }
-
-      return combined;
-    }, function(value) {
-      if (value) {
-        ctrl.$parsers.unshift(function(viewValue) {
-          const origin = scope.passwordVerify;
-
-          if (origin !== viewValue) {
-            ctrl.$setValidity("passwordVerify", false);
-
-            return undefined;
-          } else {
-            ctrl.$setValidity("passwordVerify", true);
-
-            return viewValue;
-          }
-        });
-      }
-    });
-  }
 }

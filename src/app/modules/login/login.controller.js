@@ -1,5 +1,5 @@
 export class LoginController {
-  constructor(authService) {
+  constructor($timeout, authService) {
     'ngInject';
 
     this.LoginForm = {};
@@ -10,6 +10,7 @@ export class LoginController {
     };
     this.submitted = false;
 
+    this.$timeout = $timeout;
     this.authService = authService;
 
     this.activate();
@@ -27,9 +28,11 @@ export class LoginController {
       return false;
     }
 
-    this.authService.login(this.userData)
+    return this.authService.login(this.userData)
       .then(() => {}, (response) => {
-        this.message = response.message;
+        this.$timeout(() => {
+          this.message = response.message;
+        });
       });
   }
 }

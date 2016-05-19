@@ -4,16 +4,14 @@ export class EntriesController {
 
     this.entries = null;
     this.totalEntries = null;
-    this.pagination = {
-      current: page,
-    };
+    this.currentPage = page;
 
     this.entriesService = entriesService;
     this.$timeout = $timeout;
     this.$state = $state;
     this.$uibModal = $uibModal;
 
-    this.activate(page);
+    this.activate(this.currentPage);
   }
 
   activate(page) {
@@ -27,7 +25,11 @@ export class EntriesController {
   }
 
   pageChanged(newPage) {
-    this.$state.go('index.all', {page: newPage});
+    this.$state.go('index.all', { page: newPage });
+  }
+
+  editEntry(id) {
+    this.$state.go('index.edit', { entryId: id });
   }
 
   removeEntry(id) {
@@ -60,7 +62,10 @@ export class EntriesController {
     });
 
     modalInstance.result.then(() => {
-      this.entriesService.deleteEntry(id);
+      this.entriesService.deleteEntry(id)
+        .then(() => {
+          this.activate(this.currentPage);
+        });
     });
   }
 

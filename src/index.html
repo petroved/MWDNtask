@@ -3,7 +3,6 @@
 <head>
     <meta charset="utf-8">
     <title>MWDN test task</title>
-    <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     {% for (var css in o.htmlWebpackPlugin.files.css) { %}
@@ -17,8 +16,6 @@
     <![endif]-->
 
     <div ui-view></div>
-
-    <footer-test></footer-test>
 
     {% for (var chunk in o.htmlWebpackPlugin.files.chunks) { %}
     <script src="{%=o.htmlWebpackPlugin.files.chunks[chunk].entry %}" defer></script>
